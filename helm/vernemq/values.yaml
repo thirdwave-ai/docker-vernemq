@@ -10,6 +10,11 @@ image:
 
   pullPolicy: IfNotPresent
 
+  # Image pull secrets for the Pod
+  imagePullSecrets: []
+
+
+
 nameOverride: ""
 fullnameOverride: ""
 
