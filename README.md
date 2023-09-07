@@ -10,6 +10,19 @@ products.
 
 VerneMQ is an Apache2 licensed distributed MQTT broker, developed in Erlang.
 
+## TWA Modifications / Building
+
+This repository has been modified to build VerneMQ from source. TWA maintainers wishing to rebuild
+this package should take the following steps:
+
+ * Edit the Dockerfile and bump the `TWA_BUILD_NUM` value
+ * run `docker build -t gcr.io/voltaic-day-213421/vernemq:1.13.0.twa<TWA_BUILD_NUM>`
+ * Check the build. The container should launch and be stable, and querying the cluster should return one entry.
+   * `docker run -e "DOCKER_VERNEMQ_ALLOW_ANONYMOUS=on" --name vernemq1 -d gcr.io/voltaic-day-213421/vernemq:1.13.0.twa<TWA_BUILD_NUM>`
+   * `docker exec vernemq1 vmq-admin cluster show`
+ * Push the docker: `docker push gcr.io/voltaic-day-213421/vernemq:1.13.0.twa<TWA_BUILD_NUM>`
+
+
 ## How to use this image
 
 ### 1. Accepting the VerneMQ EULA
